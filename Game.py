@@ -1,5 +1,11 @@
 from tkinter import *
 
 window = Tk()
-window.size("1000x1000")
+window.geometry("1000x1000")
 window.title("Snake Game")
+
+snake = ("25x25", "yellow")
+
+
+
+window.mainloop()
