@@ -4,5 +4,10 @@ window.geometry("1000x1000")
 window.title =("Tetris Data")
 enteruser = Entry(window, font = "Arial, 12")
 submit_button = Button(window, text="Submit Data", font="Arial, 12")
+data = ("https://ch.tetr.io/lb/league")
+user = enteruser.pack()
+if user in data:
+    
+enteruser.pack()
 submit_button.pack()
 window.mainloop()
