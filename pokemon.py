@@ -1,7 +1,7 @@
 from tkinter import *
 import requests
 window = Tk()
-window.geometry("1000x1000")
+window.geometry("500x500")
 window.title =("Pokemon Data")
 enteruser = Entry(window, font = "Arial, 12")
 submit_button = Button(window, text="Submit Data", font="Arial, 12")
