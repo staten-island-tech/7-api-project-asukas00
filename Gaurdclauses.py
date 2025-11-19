@@ -6,13 +6,13 @@ def Valid(email,password):
     digit = 0
     upper = 0
     for char in password:
-        if char == char.isupper():
+        if char.isupper():
             upper += 1
-        if char == char.isdigit():
+        if char.isdigit():
             digit += 1
-        if upper > 0:
+    if upper == 0:
             return "your password needs at least 1 upper case letter"
-        if digit > 0:
+    if digit == 0:
             return "your password requires at least 1 digit"
-
-print(Valid("grfeweheoihgkh@gmail.com", "EefytErger4f3"))
+    return(email, password)
+print(Valid("grfeweheoihgkh@gmail.com", "Efytrger4f3"))
