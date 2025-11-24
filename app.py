@@ -1,4 +1,8 @@
-import requests
+from tkinter import *
+window = Tk()
+window.geometry("500x500")
+
+""" import requests
 
 def getPoke(poke):
     response = requests.get(f"https://pokeapi.co/api/v2/pokemon/{poke.lower()}")
@@ -17,3 +21,9 @@ def getPoke(poke):
 pokemon = getPoke("raticate")
 print(pokemon)
 
+ """
+
+name_entry = tk.Entry(root, textvariable=name_var, width=30)
+name_entry.pack(pady=5)
+
+window.mainloop()
