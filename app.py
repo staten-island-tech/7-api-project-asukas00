@@ -1,6 +1,4 @@
-from tkinter import *
-window = Tk()
-window.geometry("500x500")
+
 
 """ import requests
 
@@ -22,8 +20,3 @@ pokemon = getPoke("raticate")
 print(pokemon)
 
  """
-
-name_entry = tk.Entry(root, textvariable=name_var, width=30)
-name_entry.pack(pady=5)
-
-window.mainloop()
