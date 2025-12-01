@@ -14,9 +14,9 @@ def getPoke():
             data = response.json()
             display_text = (
                 f"Pokémon: {data['name']} (ID: {data['id']})",
-                f"Height: {data['height']}/n",
-                f"Weight: {data['weight']}/n",
-                f"Types: {data['types']}/n"
+                f"Height: {data['height']}",
+                f"Weight: {data['weight']}",
+                f"Types: {data['types']}"
             )
             
             poke_datalabel.config(text=display_text, fg="black")
@@ -28,8 +28,8 @@ def getPoke():
         
 
 submit_button.config(command=getPoke)
-enteruser.pack()
-submit_button.pack()
-poke_datalabel.pack()
+enteruser.pack(pady=10)
+submit_button.pack(pady=10)
+poke_datalabel.pack(pady=10)
 
 window.mainloop()
