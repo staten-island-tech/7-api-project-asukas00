@@ -10,23 +10,26 @@ def getPoke():
     poke = enteruser.get()  # Get the Pokémon name entered by the user
     response = requests.get(f"https://pokeapi.co/api/v2/pokemon/{poke.lower()}")
     data = response.json()
-    pokemon = {
-                "name": data["name"].capitalize(),
-                "id": data["id"],
-                "height": data["height"] / 10,  # Convert decimeters to meters
-                "weight": data["weight"] / 10,  # Convert hectograms to kilograms
-                "types": [t["type"]["name"].capitalize() for t in data["types"]]
-            }
-    if response.status_code != 200:
-        print("Error fetching data!")
-        return print(text= "There is no pokemon with this name try again")
     if response.status_code == 200:
-        submit_button.config(command=getPoke)
-    
+            data = response.json()
+            display_text = (
+                f"Pokémon: {data['name']} (ID: {data['id']})",
+                f"Height: {data['height']}/n",
+                f"Weight: {data['weight']}/n",
+                f"Types: {data['types']}/n"
+            )
+            
+            poke_datalabel.config(text=display_text, fg="black")
+            
+    if not response.status_code == 200:
+            error_message = f"Error: No Pokémon named '{poke_datalabel.capitalize()}' found. Try again."
+            poke_datalabel.config(text=error_message, fg="red")
 
+        
 
-
-poke_datalabel.pack()
+submit_button.config(command=getPoke)
 enteruser.pack()
 submit_button.pack()
+poke_datalabel.pack()
+
 window.mainloop()
