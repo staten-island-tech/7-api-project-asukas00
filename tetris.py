@@ -40,10 +40,9 @@ def get_user():
             "streaming_platforms": data.get("streaming_platforms", [])
         }
 
-        # Turn into readable text
-        info = "\n".join([f"{k}: {v}" for k, v in user_data.items()])
 
-        chessplayerlabel.config(text=info, fg="black")
+
+        chessplayerlabel.config(text=user_data, fg="black")
 
     else:
         chessplayerlabel.config(
