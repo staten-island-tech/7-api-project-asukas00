@@ -13,23 +13,25 @@ chessplayerlabel = Label(window, font="Arial, 12")
 def get_user():
     try:
         chess = enteruser.get() 
-        data = requests.get(f"https://api.chess.com/pub/player/{chess.capitalize}")
-        
+        data = requests.get(f"https://api.chess.com/pub/player/{chess.lower()}")
+        info = data.json()
 
         if data.status_code == 200:
             display_text = (
-                f"avatar: {data['avatar']}",
-                f"name:  {data['name']}",
-                f"username: {data['username']}"
-                f"League: {data['league']}",
-                f"Location: {data['location']},"
-                f"Url: {data['url']}"
+                f"avatar:{info.get['avatar']}",
+                f"name:  {info.get['name']}",
+                f"username: {info.get['username']}"
+                f"title: {info.get['title']}",
+                f"League: {info.get['league']}",
+                f"Location: {info.get['location']}",
+                f"Url: {info.get['url']}",
+                f"record:{info.get['record']}"
             )
             chessplayerlabel.config(text= display_text , bg = "black")
 
         
-        if not data.status_code == 200:
-            error_message = f"Error: No player named '{chess.capitalize()}' found. Try again."
+        if  data.status_code != 200:
+            error_message = f"Error: No player named '{chess.lower()}' found. Try again."
             chessplayerlabel.config(text=error_message, fg="red")
 
 
