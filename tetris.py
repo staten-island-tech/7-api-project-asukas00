@@ -13,24 +13,27 @@ chessplayerlabel = Label(window, font="Arial, 12")
 def get_user():
     try:
         chess = enteruser.get() 
-        data = requests.get(f"https://api.chess.com/pub/player/{chess.lower()}")
-        info = data.json()
+        headers = {"User-Agent": "Mozilla/5.0"} #i asked chatgpt why chess API didn't work and gpt said I needed a header
 
-        if data.status_code == 200:
+        response = requests.get(
+            f"https://api.chess.com/pub/player/{chess}",
+            headers=headers
+        )
+        if response.status_code == 200:
+            info = response.json()
             display_text = (
-                f"avatar:{info.get['avatar']}",
-                f"name:  {info.get['name']}",
-                f"username: {info.get['username']}"
-                f"title: {info.get['title']}",
-                f"League: {info.get['league']}",
-                f"Location: {info.get['location']}",
-                f"Url: {info.get['url']}",
-                f"record:{info.get['record']}"
+                f"name: {info['name']}.\n",
+                f"username: {info['username']}.\n",
+                f"title: {info['title']}.\n",
+                f"League: {info['league']}.\n",
+                f"Location: {info['location']}.\n",
+                f"Url: {info['url']}.\n"
             )
-            chessplayerlabel.config(text= display_text , bg = "black")
+            for info in display_text:
+                chessplayerlabel.config(text= display_text , bg = "white")
 
         
-        if  data.status_code != 200:
+        if  response.status_code != 200:
             error_message = f"Error: No player named '{chess.lower()}' found. Try again."
             chessplayerlabel.config(text=error_message, fg="red")
 
