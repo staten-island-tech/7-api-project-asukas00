@@ -22,16 +22,17 @@ def get_user():
         if response.status_code == 200:
             info = response.json()
             display_text = (
-                f"name: {info['name']}.\n",
-                f"username: {info['username']}.\n",
-                f"title: {info['title']}.\n",
-                f"League: {info['league']}.\n",
-                f"Location: {info['location']}.\n",
-                f"Url: {info['url']}.\n"
+                f"name: {info['name']}\n",
+                f"player_id: {info['player_id']}\n",
+                f"username: {info['username']}\n",
+                f"title: {info['title']}\n",
+                f"League: {info['league']}\n",
+                f"Location: {info['location']}\n",
+                f"Url: {info['url']}\n",
+                
             )
             for info in display_text:
-                chessplayerlabel.config(text= display_text , bg = "white")
-
+                Label(window, text = info).pack() 
         
         if  response.status_code != 200:
             error_message = f"Error: No player named '{chess.lower()}' found. Try again."
@@ -50,3 +51,7 @@ submit_button.pack(pady=10)
 chessplayerlabel.pack(pady=10)
 
 window.mainloop()
+
+
+
+
