@@ -24,11 +24,22 @@ def get_user():
         if response.status_code == 200:
             info = response.json()
 
-            return info
+            display_text = (
+                f"Avatar: {info.get('avatar', 'N/A')}\n"
+                f"Name: {info.get('name', 'N/A')}\n"
+                f"Username: {info.get('username', 'N/A')}\n"
+                f"Status: {info.get('status', 'N/A')}\n"
+                f"Location: {info.get('location', 'N/A')}\n"
+                f"URL: {info.get('url', 'N/A')}"
+            )
 
-        chessplayerlabel.config(text=info, bg="black", fg="white")
+            chessplayerlabel.config(text=display_text, bg="black", fg="white")
 
-
+        else:
+            chessplayerlabel.config(
+                text=f"Error: No player named '{chess}' found.",
+                fg="red"
+            )
 
     except requests.ConnectionError:
         chessplayerlabel.config(

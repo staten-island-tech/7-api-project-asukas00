@@ -22,12 +22,12 @@ def get_user():
         if response.status_code == 200:
             info = response.json()
             display_text = (
-                f"name: {info['name']}\n",
-                f"player_id: {info['player_id']}\n",
-                f"username: {info['username']}\n",
-                f"title: {info['title']}\n",
-                f"League: {info['league']}\n",
-                f"Location: {info['location']}\n",
+                f"name: {info['name', 'N/A']}\n",
+                f"player_id: {info['player_id', 'N/A']}\n",
+                f"username: {info['username', 'N/A']}\n",
+                f"title: {info['title', 'N/A']}\n",
+                f"League: {info['league', 'N/A']}\n",
+                f"Location: {info['location','N/A']}\n",
                 f"Url: {info['url']}\n",
                 
             )
