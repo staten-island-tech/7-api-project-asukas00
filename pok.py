@@ -1,5 +1,6 @@
 from tkinter import *
 import requests
+import PIL
 
 window = Tk()
 window.geometry("500x500")
@@ -13,7 +14,7 @@ def get_user():
     try:
         chess = enteruser.get().strip().lower()
 
-        # Chess.com API requires User-Agent header
+
         headers = {"User-Agent": "Mozilla/5.0"}
 
         response = requests.get(

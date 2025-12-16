@@ -9,49 +9,51 @@ enteruser = Entry(window, font="Arial, 12")
 submit_button = Button(window, text="Submit Data", font="Arial, 12", bg="yellow")
 chessplayerlabel = Label(window, font="Arial, 12")
 
-
 def get_user():
     try:
-        chess = enteruser.get() 
-        headers = {"User-Agent": "Mozilla/5.0"} #i asked chatgpt why chess API didn't work and gpt said I needed a header
+        chess = enteruser.get().strip().lower()
+
+
+        headers = {"User-Agent": "Mozilla/5.0"}
 
         response = requests.get(
             f"https://api.chess.com/pub/player/{chess}",
             headers=headers
         )
+
         if response.status_code == 200:
             info = response.json()
-            display_text = (
-                f"name: {info['name', 'N/A']}\n",
-                f"player_id: {info['player_id', 'N/A']}\n",
-                f"username: {info['username', 'N/A']}\n",
-                f"title: {info['title', 'N/A']}\n",
-                f"League: {info['league', 'N/A']}\n",
-                f"Location: {info['location','N/A']}\n",
-                f"Url: {info['url']}\n",
-                
-            )
-            for info in display_text:
-                Label(window, text = info).pack() 
-        
-        if  response.status_code != 200:
-            error_message = f"Error: No player named '{chess.lower()}' found. Try again."
-            chessplayerlabel.config(text=error_message, fg="red")
 
+            display_text = (
+                f"Avatar: {info.get('avatar', 'N/A')}\n"
+                f"Name: {info.get('name', 'N/A')}\n"
+                f"Username: {info.get('username', 'N/A')}\n"
+                f"Status: {info.get('status', 'N/A')}\n"
+                f"Location: {info.get('location', 'N/A')}\n"
+                f"URL: {info.get('url', 'N/A')}"
+            )
+
+            chessplayerlabel.config(text=display_text, fg="black")
+
+        else:
+            chessplayerlabel.config(
+                text=f"Error: No player named '{chess}' found.",
+                fg="red"
+            )
 
     except requests.ConnectionError:
-       chessplayerlabel.config(text="Connection Error: Could not connect to the API.", fg="red")
-
+        chessplayerlabel.config(
+            text="Connection Error: Could not connect to the API.",
+            fg="red"
+        )
 
 submit_button.config(command=get_user)
-
 
 enteruser.pack(pady=10)
 submit_button.pack(pady=10)
 chessplayerlabel.pack(pady=10)
 
 window.mainloop()
-
 
 
 
