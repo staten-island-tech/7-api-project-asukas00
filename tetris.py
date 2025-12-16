@@ -25,7 +25,6 @@ def get_user():
             info = response.json()
 
             display_text = (
-                f"Avatar: {info.get('avatar', 'N/A')}\n"
                 f"Name: {info.get('name', 'N/A')}\n"
                 f"Username: {info.get('username', 'N/A')}\n"
                 f"Status: {info.get('status', 'N/A')}\n"

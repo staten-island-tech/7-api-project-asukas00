@@ -1,6 +1,5 @@
 from tkinter import *
 import requests
-import PIL
 
 window = Tk()
 window.geometry("500x500")
